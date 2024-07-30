@@ -8,6 +8,25 @@ This repository contains the launch files to simulate the TIAGo robot in ROS 2.
 
 ## Setup
 
+
+### Migration to Gazebo Fortress
+Right now spawning the tiago model works somewhat in gazebo fortress.
+The process is as follows:
+
+
+1. Use the newly-made launch file which opens gazebo fortress and tries to spawn Tiago
+```
+ros2 launch tiago_gazebo fortress_tiago_gazebo.launch.py is_public_sim:=True [arm_type:=no-arm]
+```
+
+
+2. Directly call the robot description publisher as the launch file it is typically a part of uses another node which is not working with the new gazebo yet.
+
+```console
+ros2 launch tiago_description robot_state_publisher.launch.py 
+```
+
+
 ### Prerequisites
 
 1. Install ROS 2 Humble by following the [installation instructions](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html).
