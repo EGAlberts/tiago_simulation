@@ -12,7 +12,7 @@ This repository contains the launch files to simulate the TIAGo robot in ROS 2.
 ### Migration to Gazebo Fortress
 Right now spawning the tiago model works somewhat in gazebo fortress.
 The process is as follows:
-
+0. Follow the installation instructions below to create the workspace.
 
 1. Use the newly-made launch file which opens gazebo fortress and tries to spawn Tiago
 ```
@@ -43,6 +43,7 @@ sudo apt-get install git python3-vcstool python3-rosdep python3-colcon-common-ex
 >
 > We are still looking on the issues when working with Fast RTPS.
 
+3. Install [Gazebo Fortress](https://gazebosim.org/docs/fortress/install/).
 
 ### Setting up the workspace
 
@@ -51,7 +52,7 @@ Create a workspace and clone all repositories:
 ```console
 mkdir -p ~/tiago_public_ws/src
 cd ~/tiago_public_ws
-vcs import --input https://raw.githubusercontent.com/pal-robotics/tiago_tutorials/humble-devel/tiago_public.repos src
+vcs import --input https://raw.githubusercontent.com/EGAlberts/tiago_simulation/humble-devel/tiago_public.repos src
 ```
 
 Install dependencies using rosdep
