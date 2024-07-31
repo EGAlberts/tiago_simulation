@@ -103,19 +103,27 @@ def declare_actions(
         paths=['launch', 'pal_gazebo.launch.py'], #ideally, I make a version of this which launches the new gazebo instead of the old.
         env_vars=[old_gazebo_model_path_env_var],
         launch_arguments={
-            "world_name":  launch_args.world_name,
+            # "world_name":  launch_args.world_name,
             "model_paths": packages,
             "resource_paths": packages,
         })
 
     #for now I manually to the below instead.
     #TODO: allow passing world through launch argument
+    world = os.path.join(
+        get_package_share_directory('tiago_gazebo'),
+        'worlds',
+        'empty_world.sdf'
+    )
+
     gzserver_cmd = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(ros_gz_sim, 'launch', 'gz_sim.launch.py')
         ),
-        launch_arguments={'gz_args': ['-r -s -v4 ', "empty.sdf"]}.items()
+        launch_arguments={'gz_args': ['-r -s -v4 ', world]}.items()
     )
+
+   
 
     gzclient_cmd = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(

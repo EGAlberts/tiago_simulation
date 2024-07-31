@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+import os
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration
@@ -19,6 +19,7 @@ from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 from dataclasses import dataclass
 from launch_pal.arg_utils import LaunchArgumentsBase
+from ament_index_python.packages import get_package_share_directory
 
 
 @dataclass(frozen=True)
@@ -56,11 +57,32 @@ def declare_actions(
         output="screen",
     )
 
+    bridge_params = os.path.join(
+        get_package_share_directory('tiago_gazebo'),
+        'params',
+        'tiago_bridge.yaml'
+    )
+
+    start_gazebo_ros_bridge_cmd = Node(
+        package='ros_gz_bridge',
+        executable='parameter_bridge',
+        arguments=[
+            '--ros-args',
+            '-p',
+            f'config_file:={bridge_params}',
+        ],
+        output='screen',
+    )
+
+    start_gazebo_ros_image_bridge_cmd = Node(
+        package='ros_gz_image',
+        executable='image_bridge',
+        arguments=['/head_front_camera/image_raw'],
+        output='screen',
+    )
+
     launch_description.add_action(robot_entity)
-
-
-    #TODO: When plugins are converted add the following to bridge between gazebo and ROS2.
-    # launch_description.add_action(start_gazebo_ros_bridge_cmd)
-    # launch_description.add_action(start_gazebo_ros_image_bridge_cmd)
+    launch_description.add_action(start_gazebo_ros_bridge_cmd)
+    launch_description.add_action(start_gazebo_ros_image_bridge_cmd)
 
     return
