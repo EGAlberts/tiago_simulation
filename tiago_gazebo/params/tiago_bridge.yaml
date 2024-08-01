@@ -4,3 +4,21 @@
   ros_type_name: "sensor_msgs/msg/CameraInfo"
   gz_type_name: "gz.msgs.CameraInfo"
   direction: GZ_TO_ROS
+  
+- ros_topic_name: "head_front_camera/depth_registered/points"
+  gz_topic_name: "/head_front_camera/image_raw/points"
+  ros_type_name: "sensor_msgs/msg/PointCloud2"
+  gz_type_name: "gz.msgs.PointCloudPacked"
+  direction: GZ_TO_ROS
+  
+- ros_topic_name: "scan_raw"
+  gz_topic_name: "scan_raw"
+  ros_type_name: "sensor_msgs/msg/LaserScan"
+  gz_type_name: "gz.msgs.LaserScan"
+  direction: GZ_TO_ROS
+  
+- ros_topic_name: "sonar_base"
+  gz_topic_name: "sonar_base"
+  ros_type_name: "sensor_msgs/msg/Range"
+  gz_type_name: "gz.msgs.LaserScan"
+  direction: GZ_TO_ROS
