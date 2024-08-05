@@ -17,14 +17,20 @@
   gz_type_name: "gz.msgs.LaserScan"
   direction: GZ_TO_ROS
   
-- ros_topic_name: "sonar_base"
-  gz_topic_name: "sonar_base"
-  ros_type_name: "sensor_msgs/msg/Range"
-  gz_type_name: "gz.msgs.LaserScan"
-  direction: GZ_TO_ROS
+#- ros_topic_name: "sonar_base"
+#  gz_topic_name: "sonar_base"
+#  ros_type_name: "sensor_msgs/msg/Range"
+#  gz_type_name: "gz.msgs.LaserScan"
+#  direction: GZ_TO_ROS
 
 - ros_topic_name: "base_imu" 
   gz_topic_name: "base_imu" 
   ros_type_name: "sensor_msgs/msg/Imu" 
   gz_type_name: "gz.msgs.IMU" 
+  direction: GZ_TO_ROS
+  
+- ros_topic_name: "ground_truth_odom" 
+  gz_topic_name: "ground_truth_odom" 
+  ros_type_name: "nav_msgs/msg/Odometry" 
+  gz_type_name: "gz.msgs.Odometry" 
   direction: GZ_TO_ROS
