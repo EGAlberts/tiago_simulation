@@ -154,7 +154,7 @@ def declare_actions(
         condition=IfCondition(LaunchConfiguration('navigation')))
     #TODO: restore nav2 integration once imu and sensor plugins ported.
 
-    # launch_description.add_action(navigation)
+    launch_description.add_action(navigation)
 
     advanced_navigation = include_scoped_launch_py_description(
         pkg_name='tiago_advanced_2dnav',
@@ -181,7 +181,7 @@ def declare_actions(
         condition=IfCondition(LaunchConfiguration('moveit')))
 
     #TODO: fix moveit integration
-    # launch_description.add_action(move_group)
+    launch_description.add_action(move_group)
 
     robot_spawn = include_scoped_launch_py_description(
         pkg_name='tiago_gazebo',
@@ -209,7 +209,7 @@ def declare_actions(
         }
     )
     #TODO: fix tiago_bringup side-effects
-    # launch_description.add_action(tiago_bringup)
+    launch_description.add_action(tiago_bringup)
 
     tuck_arm = Node(package='tiago_gazebo',
                     executable='tuck_arm.py',
