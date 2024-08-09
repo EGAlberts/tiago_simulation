@@ -10,7 +10,7 @@ This repository contains the launch files to simulate the TIAGo robot in ROS 2.
 
 
 ### Migration to Gazebo Fortress
-Right now spawning the tiago model works somewhat in gazebo fortress.
+Right now spawning and moving the tiago model works somewhat in gazebo fortress.
 The process is as follows:
 0. Follow the installation instructions below to create the workspace.
 
@@ -19,12 +19,11 @@ The process is as follows:
 ros2 launch tiago_gazebo fortress_tiago_gazebo.launch.py is_public_sim:=True [arm_type:=no-arm]
 ```
 
+This should launch everything as per the gazebo classic version.
+Open issues:
+Moving joints besides the wheels proves difficult. This means only the mobile_base_controller is functioning. Additionally, there is an issue with the odom_frame being published for use with Nav2, but manually publishing to cmd_vel_unstamped works fine. 
 
-2. Directly call the robot description publisher as the launch file it is typically a part of uses another node which is not working with the new gazebo yet.
-
-```console
-ros2 launch tiago_description robot_state_publisher.launch.py 
-```
+It is likely that with gazebo fortress some implicit integration with ros2_control is missing w.r.t. actuating movement as compared to gazebo classic.
 
 
 ### Prerequisites
